@@ -202,10 +202,11 @@
                 }]
             }
         };
-        for (let i = 0; i < 6; ++i) {
-            TABS.all.items = [...TABS.all.items, ...TABS.all.items];
-        }
         const TABS_KEYS = Object.keys(TABS);
+        for (let i = 0; i < 6; ++i) {
+            // TABS.all.items = [...TABS.all.items, ...TABS.all.items];
+            TABS.all.items = TABS.all.items.concat(TABS.all.items);
+        }
 
         function Main() {
             const ref = React.useRef();
@@ -226,7 +227,8 @@
 
             let sizes = [];
             const onSize = size => {
-                sizes = [...sizes, size];
+                // sizes = [...sizes, size];
+                sizes = sizes.concat(size)
             };
 
             React.useEffect(() => {
