@@ -185,12 +185,11 @@
 
         function Event({ onSize, slim, title, icon, subtitle, iconLabel }) {
             const ref = React.useRef();
-
             React.useEffect(() => {
+
                 const width = ref.current.offsetWidth;
-                const height = ref.current.offsetHeight;
                 if (onSize) {
-                    onSize({ width, height });
+                    onSize(width);
                 }
             });
 
@@ -208,6 +207,7 @@
 
 
         function FavoriteDevicesSection() {
+
             const initedRef = React.useRef(false);
             const [activeTab, setActiveTab] = React.useState('');
 
@@ -263,17 +263,13 @@
             const ref = React.useRef();
 
             const [hasRightScroll, setHasRightScroll] = React.useState(false);
+            let sumWidth = 0;
+            const onSize = React.useCallback(size => {
+                sumWidth += size;
+            });
 
-            let sizes = [];
-            const onSize = size => {
-                // sizes = [...sizes, size];
-                sizes = sizes.concat(size)
-            };
 
             React.useEffect(() => {
-                const sumWidth = sizes.reduce((acc, item) => acc + item.width, 0);
-                const sumHeight = sizes.reduce((acc, item) => acc + item.height, 0);
-
                 const newHasRightScroll = sumWidth > ref.current.offsetWidth;
                 if (newHasRightScroll !== hasRightScroll) {
                     setHasRightScroll(newHasRightScroll);
