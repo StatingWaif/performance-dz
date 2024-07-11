@@ -146,9 +146,9 @@
             }
         };
         const TABS_KEYS = Object.keys(TABS);
-        // for (let i = 0; i < 6; ++i) {
-        //     TABS.all.items = TABS.all.items.concat(TABS.all.items);
-        // }
+        for (let i = 0; i < 6; ++i) {
+            TABS.all.items = TABS.all.items.concat(TABS.all.items);
+        }
         function Header() {
             let [expanded, setExpanded] = React.useState(false);
             let [toggled, setToggled] = React.useState(false);
@@ -261,6 +261,7 @@
 
         function EventList({ activeTab }) {
             const ref = React.useRef();
+            const panelRef = React.useRef();
 
             const [hasRightScroll, setHasRightScroll] = React.useState(false);
             // let sumWidth = 0;
@@ -294,9 +295,11 @@
                 sizes.push(size)
             });
             React.useEffect(() => {
+
                 const sumWidth = getAllSize();
                 const newHasRightScroll = sumWidth > ref.current.offsetWidth;
                 if (newHasRightScroll !== hasRightScroll) {
+
                     setHasRightScroll(newHasRightScroll);
                 }
             });
@@ -304,15 +307,23 @@
 
 
 
+
+
+
+
             const onArrowCLick = () => {
-                const scroller = ref.current.querySelector('.section__panel:not(.section__panel_hidden)');
+                const scroller = panelRef.current
+
                 if (scroller) {
-                    // TABS.all.items = TABS.all.items.concat(TABS.all.items)
-                    // console.log(scroller.scrollLeft, getAllSize())
-                    if (scroller.scrollLeft > getAllSize() / 2) {
-                        // console.log('zhopa')
-                        scroller.scrollLeft = 0;
-                    }
+                    // console.log(scroller.scrollLeft)
+                    // const key = scroller.id.split("panel_").pop();
+                    // TABS[key].items.concat(TABS[key].items)
+                    // if (scroller.scrollLeft >= getAllSize() / 2) {
+                    //     scroller.scrollLeft -= getAllSize() / 2
+                    // }
+                    // else if (scroller.scrollLeft <= 0) {
+                    //     scroller.scrollLeft += getAllSize() / 2
+                    // }
                     scroller.scrollTo({
                         left: scroller.scrollLeft + 400,
                         behavior: 'smooth'
@@ -321,9 +332,9 @@
             };
             return (<div className="section__panel-wrapper" ref={ref}>
                 {TABS_KEYS.map(key =>
-                    <div key={key} role="tabpanel" className={'section__panel' + (key === activeTab ? '' : ' section__panel_hidden')} aria-hidden={key === activeTab ? 'false' : 'true'} id={`panel_${key}`} aria-labelledby={`tab_${key}`}>
+                    <div ref={key === activeTab ? panelRef : null} key={key} role="tabpanel" className={'section__panel' + (key === activeTab ? '' : ' section__panel_hidden')} aria-hidden={key === activeTab ? 'false' : 'true'} id={`panel_${key}`} aria-labelledby={`tab_${key}`}>
                         <ul className="section__panel-list">
-                            {TABS[key].items.concat(TABS[key].items).map((item, index) =>
+                            {TABS[key].items.map((item, index) =>
                                 <Event
                                     key={index}
                                     {...item}
