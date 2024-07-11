@@ -5,7 +5,6 @@ export const Event = ({ onSize, slim, title, icon, subtitle, iconLabel }) => {
   useEffect(() => {
     const width = ref.current.offsetWidth;
     if (onSize) {
-      // console.log(width)
       onSize(width);
     }
   }, [ref.current, onSize]);
