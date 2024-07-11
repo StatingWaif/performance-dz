@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { EventList } from "./EventList";
 import { TABS_KEYS, TABS } from "./TABS";
 import { MemoFavoriteDeviceSelect } from "./FavoriteDevicesSelect";
@@ -8,9 +8,9 @@ export const FavoriteDevicesSection = () => {
     () => new URLSearchParams(location.search).get("tab") || "all"
   );
 
-  const onSelectInput = (event) => {
+  const onSelectInput = useCallback((event) => {
     setActiveTab(event.target.value);
-  };
+  }, []);
 
   return (
     <section className="section main__devices">
