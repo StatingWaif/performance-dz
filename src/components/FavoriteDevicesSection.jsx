@@ -1,38 +1,23 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { EventList } from "./EventList";
 import { TABS_KEYS, TABS } from "./TABS";
+import { FavoriteDevicesSelect } from "./FavoriteDevicesSelect";
 
 export const FavoriteDevicesSection = () => {
-  const initedRef = useRef(false);
   const [activeTab, setActiveTab] = useState("");
 
   useEffect(() => {
-    if (!activeTab && !initedRef.current) {
-      initedRef.current = true;
-      setActiveTab(new URLSearchParams(location.search).get("tab") || "all");
-    }
-  }, [activeTab]);
+    setActiveTab(new URLSearchParams(location.search).get("tab") || "all");
+  }, []);
 
-  const onSelectInput = (event) => {
+  const onSelectInput = useCallback((event) => {
     setActiveTab(event.target.value);
-  };
+  }, []);
 
   return (
     <section className="section main__devices">
       <div className="section__title">
-        <h2 className="section__title-header">Избранные устройства</h2>
-
-        <select
-          className="section__select"
-          defaultValue="all"
-          onInput={onSelectInput}
-        >
-          {TABS_KEYS.map((key) => (
-            <option key={key} value={key}>
-              {TABS[key].title}
-            </option>
-          ))}
-        </select>
+        <FavoriteDevicesSelect onSelectInput={onSelectInput} />
 
         <ul role="tablist" className="section__tabs">
           {TABS_KEYS.map((key) => (
