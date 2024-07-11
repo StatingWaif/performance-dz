@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Event } from "./Event";
+import { MemoEvent } from "./Event";
 import { TABS_KEYS, TABS } from "./TABS";
 
 export const EventList = ({ activeTab }) => {
@@ -8,7 +8,6 @@ export const EventList = ({ activeTab }) => {
   const [allSize, setAllSize] = useState(0);
   const [hasRightScroll, setHasRightScroll] = useState(false);
   const [tabChanged, setTabChanged] = useState(false);
-  // console.log(allSize);
 
   useEffect(() => {
     setAllSize(0);
@@ -56,11 +55,7 @@ export const EventList = ({ activeTab }) => {
         >
           <ul className="section__panel-list">
             {TABS[key].items.map((item, index) => (
-              <Event
-                key={`${key}_${item.title}_${index}`}
-                {...item}
-                onSize={onSize}
-              />
+              <MemoEvent key={index} {...item} onSize={onSize} />
             ))}
           </ul>
         </div>

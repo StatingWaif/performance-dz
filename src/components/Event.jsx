@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 
 export const Event = ({ onSize, slim, title, icon, subtitle, iconLabel }) => {
   const ref = useRef();
@@ -24,3 +24,5 @@ export const Event = ({ onSize, slim, title, icon, subtitle, iconLabel }) => {
     </li>
   );
 };
+
+export const MemoEvent = memo(Event);

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { EventList } from "./EventList";
 import { TABS_KEYS, TABS } from "./TABS";
 import { FavoriteDevicesSelect } from "./FavoriteDevicesSelect";
