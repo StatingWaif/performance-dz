@@ -55,8 +55,8 @@ export const EventList = ({ activeTab }) => {
           aria-labelledby={`tab_${key}`}
         >
           <ul className="section__panel-list">
-            {TABS[key].items.map((item, index) => (
-              <Event key={index} {...item} onSize={onSize} />
+            {TABS[key].items.map((item) => (
+              <Event key={`${key}_${item.title}`} {...item} onSize={onSize} />
             ))}
           </ul>
         </div>
