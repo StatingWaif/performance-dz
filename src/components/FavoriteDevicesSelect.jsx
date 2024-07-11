@@ -1,7 +1,6 @@
-import { memo } from "react";
 import { TABS, TABS_KEYS } from "./TABS";
 
-const FavoriteDevicesSelect = ({ onSelectInput }) => {
+export const FavoriteDevicesSelect = ({ onSelectInput }) => {
   return (
     <>
       <h2 className="section__title-header">Избранные устройства</h2>
@@ -21,4 +20,4 @@ const FavoriteDevicesSelect = ({ onSelectInput }) => {
   );
 };
 
-export const MemoFavoriteDeviceSelect = memo(FavoriteDevicesSelect);
+// export const MemoFavoriteDeviceSelect = memo(FavoriteDevicesSelect);
