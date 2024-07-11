@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { TABS, TABS_KEYS } from "./TABS";
 
 const FavoriteDevicesSelect = ({ onSelectInput }) => {
@@ -20,4 +21,4 @@ const FavoriteDevicesSelect = ({ onSelectInput }) => {
   );
 };
 
-export const MemoFavoriteDeviceSelect = FavoriteDevicesSelect;
+export const MemoFavoriteDeviceSelect = memo(FavoriteDevicesSelect);

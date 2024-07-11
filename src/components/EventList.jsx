@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Event } from "./Event";
-import { TABS_KEYS, TABS } from "./TABS";
+import { TABS_KEYS, TABS, oneAllItems } from "./TABS";
 
 export const EventList = ({ activeTab }) => {
+  const [items, setItems] = useState(TABS[activeTab].items);
   const ref = useRef();
   const panelRef = useRef();
   const [hasHorizontalScroll, setHasHorizontalScroll] = useState(false);
@@ -31,9 +32,13 @@ export const EventList = ({ activeTab }) => {
   }, [activeTab]);
 
   const onArrowCLick = () => {
+    if (activeTab === "all") {
+      setItems((prev) => prev.concat(oneAllItems));
+    }
     const scroller = panelRef.current;
 
     if (scroller) {
+      console.log(items.length);
       scroller.scrollTo({
         left: scroller.scrollLeft + 400,
         behavior: "smooth",
@@ -57,7 +62,7 @@ export const EventList = ({ activeTab }) => {
           aria-labelledby={`tab_${key}`}
         >
           <ul className="section__panel-list">
-            {TABS[key].items.map((item, index) => (
+            {items.map((item, index) => (
               <Event key={index} {...item} />
             ))}
           </ul>

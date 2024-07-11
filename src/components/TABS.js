@@ -128,7 +128,9 @@ const TABS = {
   },
 };
 export const TABS_KEYS = ["all", "kitchen", "hall", "lights", "cameras"];
-for (let i = 0; i < 6; ++i) {
-  TABS.all.items = TABS.all.items.concat(TABS.all.items);
-}
+// for (let i = 0; i < 6; ++i) {
+export const oneAllItems = [...TABS.all.items];
+TABS.all.items = TABS.all.items.concat(TABS.all.items);
+// }
+
 export { TABS };
