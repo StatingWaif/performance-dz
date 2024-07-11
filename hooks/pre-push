@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Сохраняем текущий возвращаемый код
+original_exit_code=$?
+
+# Выполняем npm run build для сборки проекта
+echo "Running npm run build..."
+npm run build
+
+# Проверяем успешность сборки
+build_exit_code=$?
+if [ $build_exit_code -ne 0 ]; then
+    echo "npm run build failed. Aborting push."
+    exit $build_exit_code
+fi
+
+# Добавляем изменения в папку dist
+echo "Adding changes in 'dist' directory..."
+git add dist -f
+
+# Выполняем git subtree push для отправки содержимого папки dist на gh-pages
+echo "Pushing 'dist' subtree to branch gh-pages..."
+git subtree push --prefix dist origin gh-pages
+
+# Возвращаем исходный код возврата, чтобы не нарушать основную логику git push
+exit $original_exit_code
