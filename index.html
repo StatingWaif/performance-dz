@@ -285,11 +285,16 @@
 
             const sizes = [];
 
+            const getAllSize = () => {
+                const sumWidth = sizes.reduce((acc, item) => acc + item, 0);
+                return sumWidth;
+            }
+
             const onSize = React.useCallback(size => {
                 sizes.push(size)
             });
             React.useEffect(() => {
-                const sumWidth = sizes.reduce((acc, item) => acc + item, 0);
+                const sumWidth = getAllSize();
                 const newHasRightScroll = sumWidth > ref.current.offsetWidth;
                 if (newHasRightScroll !== hasRightScroll) {
                     setHasRightScroll(newHasRightScroll);
@@ -303,6 +308,11 @@
                 const scroller = ref.current.querySelector('.section__panel:not(.section__panel_hidden)');
                 if (scroller) {
                     // TABS.all.items = TABS.all.items.concat(TABS.all.items)
+                    // console.log(scroller.scrollLeft, getAllSize())
+                    if (scroller.scrollLeft > getAllSize() / 2) {
+                        // console.log('zhopa')
+                        scroller.scrollLeft = 0;
+                    }
                     scroller.scrollTo({
                         left: scroller.scrollLeft + 400,
                         behavior: 'smooth'
