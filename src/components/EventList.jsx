@@ -3,19 +3,20 @@ import { Event } from "./Event";
 import { TABS_KEYS, TABS, oneAllItems } from "./TABS";
 
 export const EventList = ({ activeTab }) => {
-  const [items, setItems] = useState(TABS[activeTab].items);
+  const [items, setItems] = useState(() => TABS[activeTab].items);
   const ref = useRef();
   const panelRef = useRef();
   const [hasHorizontalScroll, setHasHorizontalScroll] = useState(false);
-  const widths = {
-    all: 102400,
-    kitchen: 478,
-    hall: 400,
-    lights: 813,
-    cameras: 200,
-  };
 
   useEffect(() => {
+    const widths = {
+      all: 102400,
+      kitchen: 478,
+      hall: 400,
+      lights: 813,
+      cameras: 200,
+    };
+    setItems(TABS[activeTab].items);
     if (ref.current) {
       const handleResize = () => {
         setHasHorizontalScroll(widths[activeTab] > ref.current.offsetWidth);
@@ -38,7 +39,6 @@ export const EventList = ({ activeTab }) => {
     const scroller = panelRef.current;
 
     if (scroller) {
-      console.log(items.length);
       scroller.scrollTo({
         left: scroller.scrollLeft + 400,
         behavior: "smooth",
