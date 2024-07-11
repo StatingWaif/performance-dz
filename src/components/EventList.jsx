@@ -1,13 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { MemoEvent } from "./Event";
 import { TABS_KEYS, TABS } from "./TABS";
 
 export const EventList = ({ activeTab }) => {
   const ref = useRef();
   const panelRef = useRef();
-  // const [allSize, setAllSize] = useState(0);
-  const [hasRightScroll, setHasRightScroll] = useState(false);
-  // const [tabChanged, setTabChanged] = useState(false);
   const widths = {
     all: 102400,
     kitchen: 478,
@@ -15,22 +12,6 @@ export const EventList = ({ activeTab }) => {
     lights: 813,
     cameras: 200,
   };
-  // useEffect(() => {
-  //   setAllSize(0);
-  //   setTabChanged(!tabChanged);
-  // }, [activeTab]);
-
-  // const onSize = useCallback((size) => {
-  //   setAllSize((prev) => prev + size);
-  // });
-
-  useEffect(() => {
-    console.log(ref.current.offsetWidth);
-    const newHasRightScroll = widths[activeTab] > ref.current.offsetWidth;
-    if (newHasRightScroll !== hasRightScroll) {
-      setHasRightScroll(newHasRightScroll);
-    }
-  }, [activeTab, ref.current]);
 
   const onArrowCLick = () => {
     const scroller = panelRef.current;
@@ -64,7 +45,7 @@ export const EventList = ({ activeTab }) => {
           </ul>
         </div>
       ))}
-      {hasRightScroll && (
+      {(ref.current ? widths[activeTab] > ref.current.offsetWidth : false) && (
         <div className="section__arrow" onClick={onArrowCLick}></div>
       )}
     </div>
