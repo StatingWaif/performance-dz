@@ -30,7 +30,7 @@ export const EventList = ({ activeTab }) => {
     }
   }, [activeTab]);
 
-  const onArrowCLick = () => {
+  const onArrowClick = () => {
     const scroller = panelRef.current;
 
     if (scroller) {
@@ -64,7 +64,7 @@ export const EventList = ({ activeTab }) => {
         </div>
       ))}
       {hasHorizontalScroll && (
-        <div className="section__arrow" onClick={onArrowCLick}></div>
+        <div className="section__arrow" onClick={onArrowClick}></div>
       )}
     </div>
   );
