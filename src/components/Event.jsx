@@ -26,4 +26,4 @@ export const Event = ({ slim, title, icon, subtitle, iconLabel }) => {
   );
 };
 
-export const MemoEvent = memo(Event);
+export const MemoEvent = Event;
