@@ -41,7 +41,7 @@ export const EventList = ({ activeTab }) => {
     if (newHasRightScroll !== hasRightScroll) {
       setHasRightScroll(newHasRightScroll);
     }
-  });
+  }, []);
 
   const onArrowCLick = () => {
     const scroller = panelRef.current;
