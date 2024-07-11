@@ -1,10 +1,6 @@
-import { useRef } from "react";
-
 export const Event = ({ slim, title, icon, subtitle, iconLabel }) => {
-  const ref = useRef();
-
   return (
-    <li ref={ref} className={"event" + (slim ? " event_slim" : "")}>
+    <li className={"event" + (slim ? " event_slim" : "")}>
       <button className="event__button">
         <span
           className={`event__icon event__icon_${icon}`}
@@ -18,4 +14,4 @@ export const Event = ({ slim, title, icon, subtitle, iconLabel }) => {
   );
 };
 
-export const MemoEvent = Event;
+// export const MemoEvent = Event;

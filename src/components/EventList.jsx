@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { MemoEvent } from "./Event";
+import { Event } from "./Event";
 import { TABS_KEYS, TABS } from "./TABS";
 
 export const EventList = ({ activeTab }) => {
-  console.log("1");
   const ref = useRef();
   const panelRef = useRef();
   const [hasHorizontalScroll, setHasHorizontalScroll] = useState(false);
@@ -59,7 +58,7 @@ export const EventList = ({ activeTab }) => {
         >
           <ul className="section__panel-list">
             {TABS[key].items.map((item, index) => (
-              <MemoEvent key={index} {...item} />
+              <Event key={index} {...item} />
             ))}
           </ul>
         </div>

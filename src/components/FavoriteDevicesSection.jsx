@@ -7,7 +7,6 @@ export const FavoriteDevicesSection = () => {
   const [activeTab, setActiveTab] = useState(
     () => new URLSearchParams(location.search).get("tab") || "all"
   );
-
   const onSelectInput = useCallback((event) => {
     setActiveTab(event.target.value);
   }, []);
