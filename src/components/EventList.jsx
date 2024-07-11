@@ -5,57 +5,34 @@ import { TABS_KEYS, TABS } from "./TABS";
 export const EventList = ({ activeTab }) => {
   const ref = useRef();
   const panelRef = useRef();
-
+  const [allSize, setAllSize] = useState(0);
   const [hasRightScroll, setHasRightScroll] = useState(false);
-  // let sumWidth = 0;
-  // const [sumWidth, setSumWidth] = useState(0);
-  // const onSize = useCallback(size => {
-  //     setSumWidth(prev => prev += size);
-  // }, [activeTab]);
+  const [tabChanged, setTabChanged] = useState(false);
+  // console.log(allSize);
 
-  // useEffect(() => setSumWidth(0), [activeTab])
-
-  // useEffect(() => {
-  //     console.log(sumWidth, ref.current.offsetWidth)
-  //     const newHasRightScroll = sumWidth > ref.current.offsetWidth;
-  //     if (newHasRightScroll !== hasRightScroll) {
-  //         // console.log(newHasRightScroll ? "теперь есть" : "больше нет")
-  //         setHasRightScroll(newHasRightScroll);
-  //     }
-
-  // }, [sumWidth]);
-
-  const sizes = [];
-
-  const getAllSize = () => {
-    const sumWidth = sizes.reduce((acc, item) => acc + item, 0);
-    return sumWidth;
-  };
-
-  const onSize = useCallback((size) => {
-    sizes.push(size);
-  });
   useEffect(() => {
-    const sumWidth = getAllSize();
-    const newHasRightScroll = sumWidth > ref.current.offsetWidth;
+    setAllSize(0);
+    setTabChanged(!tabChanged);
+  }, [activeTab]);
+
+  const onSize = useCallback(
+    (size) => {
+      setAllSize((prev) => prev + size);
+    },
+    [tabChanged]
+  );
+
+  useEffect(() => {
+    const newHasRightScroll = allSize > ref.current.offsetWidth;
     if (newHasRightScroll !== hasRightScroll) {
       setHasRightScroll(newHasRightScroll);
     }
-  });
+  }, [allSize]);
 
   const onArrowCLick = () => {
     const scroller = panelRef.current;
 
     if (scroller) {
-      // console.log(scroller.scrollLeft)
-      // const key = scroller.id.split("panel_").pop();
-      // TABS[key].items.concat(TABS[key].items)
-      // if (scroller.scrollLeft >= getAllSize() / 2) {
-      //     scroller.scrollLeft -= getAllSize() / 2
-      // }
-      // else if (scroller.scrollLeft <= 0) {
-      //     scroller.scrollLeft += getAllSize() / 2
-      // }
       scroller.scrollTo({
         left: scroller.scrollLeft + 400,
         behavior: "smooth",

@@ -4,11 +4,11 @@ export const Event = ({ onSize, slim, title, icon, subtitle, iconLabel }) => {
   const ref = useRef();
 
   useEffect(() => {
-    const width = ref.current.offsetWidth;
     if (onSize) {
+      const width = ref.current.offsetWidth;
       onSize(width);
     }
-  }, [ref.current, onSize]);
+  }, [onSize]);
 
   return (
     <li ref={ref} className={"event" + (slim ? " event_slim" : "")}>
