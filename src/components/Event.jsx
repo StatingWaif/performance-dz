@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 
 export const Event = ({ onSize, slim, title, icon, subtitle, iconLabel }) => {
   const ref = useRef();
+
   useEffect(() => {
     const width = ref.current.offsetWidth;
     if (onSize) {
