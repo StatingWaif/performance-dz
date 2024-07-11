@@ -34,14 +34,14 @@ export const EventList = ({ activeTab }) => {
 
   const onSize = useCallback((size) => {
     sizes.push(size);
-  }, []);
+  });
   useEffect(() => {
     const sumWidth = getAllSize();
     const newHasRightScroll = sumWidth > ref.current.offsetWidth;
     if (newHasRightScroll !== hasRightScroll) {
       setHasRightScroll(newHasRightScroll);
     }
-  }, []);
+  });
 
   const onArrowCLick = () => {
     const scroller = panelRef.current;
