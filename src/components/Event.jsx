@@ -1,16 +1,17 @@
 import { memo, useEffect, useRef } from "react";
 
-export const Event = ({ onSize, slim, title, icon, subtitle, iconLabel }) => {
+export const Event = ({ slim, title, icon, subtitle, iconLabel }) => {
   const ref = useRef();
 
-  useEffect(() => {
-    if (onSize) {
-      const width = ref.current.offsetWidth;
-      onSize(width);
-    }
-  }, [onSize]);
+  // useEffect(() => {
+  //   if (onSize) {
+  //     const width = ref.current.offsetWidth;
+  //     onSize(width);
+  //   }
+  // }, [onSize]);
 
   return (
+    // <li className={"event" + (slim ? " event_slim" : "")}>
     <li ref={ref} className={"event" + (slim ? " event_slim" : "")}>
       <button className="event__button">
         <span
