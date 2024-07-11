@@ -146,10 +146,9 @@
             }
         };
         const TABS_KEYS = Object.keys(TABS);
-        for (let i = 0; i < 6; ++i) {
-            // TABS.all.items = [...TABS.all.items, ...TABS.all.items];
-            TABS.all.items = TABS.all.items.concat(TABS.all.items);
-        }
+        // for (let i = 0; i < 6; ++i) {
+        //     TABS.all.items = TABS.all.items.concat(TABS.all.items);
+        // }
         function Header() {
             let [expanded, setExpanded] = React.useState(false);
             let [toggled, setToggled] = React.useState(false);
@@ -186,12 +185,12 @@
         function Event({ onSize, slim, title, icon, subtitle, iconLabel }) {
             const ref = React.useRef();
             React.useEffect(() => {
-
                 const width = ref.current.offsetWidth;
                 if (onSize) {
+                    // console.log(width)
                     onSize(width);
                 }
-            });
+            }, [ref.current, onSize]);
 
             return <li ref={ref} className={'event' + (slim ? ' event_slim' : '')}>
                 <button className="event__button">
@@ -210,6 +209,7 @@
 
             const initedRef = React.useRef(false);
             const [activeTab, setActiveTab] = React.useState('');
+
 
             React.useEffect(() => {
                 if (!activeTab && !initedRef.current) {
@@ -263,22 +263,46 @@
             const ref = React.useRef();
 
             const [hasRightScroll, setHasRightScroll] = React.useState(false);
-            let sumWidth = 0;
+            // let sumWidth = 0;
+            // const [sumWidth, setSumWidth] = React.useState(0);
+            // const onSize = React.useCallback(size => {
+            //     setSumWidth(prev => prev += size);
+            // }, [activeTab]);
+
+            // React.useEffect(() => setSumWidth(0), [activeTab])
+
+
+            // React.useEffect(() => {
+            //     console.log(sumWidth, ref.current.offsetWidth)
+            //     const newHasRightScroll = sumWidth > ref.current.offsetWidth;
+            //     if (newHasRightScroll !== hasRightScroll) {
+            //         // console.log(newHasRightScroll ? "теперь есть" : "больше нет")
+            //         setHasRightScroll(newHasRightScroll);
+            //     }
+
+
+            // }, [sumWidth]);
+
+            const sizes = [];
+
             const onSize = React.useCallback(size => {
-                sumWidth += size;
+                sizes.push(size)
             });
-
-
             React.useEffect(() => {
+                const sumWidth = sizes.reduce((acc, item) => acc + item, 0);
                 const newHasRightScroll = sumWidth > ref.current.offsetWidth;
                 if (newHasRightScroll !== hasRightScroll) {
                     setHasRightScroll(newHasRightScroll);
                 }
             });
 
+
+
+
             const onArrowCLick = () => {
                 const scroller = ref.current.querySelector('.section__panel:not(.section__panel_hidden)');
                 if (scroller) {
+                    // TABS.all.items = TABS.all.items.concat(TABS.all.items)
                     scroller.scrollTo({
                         left: scroller.scrollLeft + 400,
                         behavior: 'smooth'
@@ -289,7 +313,7 @@
                 {TABS_KEYS.map(key =>
                     <div key={key} role="tabpanel" className={'section__panel' + (key === activeTab ? '' : ' section__panel_hidden')} aria-hidden={key === activeTab ? 'false' : 'true'} id={`panel_${key}`} aria-labelledby={`tab_${key}`}>
                         <ul className="section__panel-list">
-                            {TABS[key].items.map((item, index) =>
+                            {TABS[key].items.concat(TABS[key].items).map((item, index) =>
                                 <Event
                                     key={index}
                                     {...item}
