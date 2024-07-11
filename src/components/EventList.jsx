@@ -1,10 +1,12 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MemoEvent } from "./Event";
 import { TABS_KEYS, TABS } from "./TABS";
 
 export const EventList = ({ activeTab }) => {
+  console.log("1");
   const ref = useRef();
   const panelRef = useRef();
+  const [hasHorizontalScroll, setHasHorizontalScroll] = useState(false);
   const widths = {
     all: 102400,
     kitchen: 478,
@@ -12,6 +14,22 @@ export const EventList = ({ activeTab }) => {
     lights: 813,
     cameras: 200,
   };
+
+  useEffect(() => {
+    if (ref.current) {
+      const handleResize = () => {
+        setHasHorizontalScroll(widths[activeTab] > ref.current.offsetWidth);
+      };
+
+      handleResize();
+
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, [activeTab]);
 
   const onArrowCLick = () => {
     const scroller = panelRef.current;
@@ -23,6 +41,7 @@ export const EventList = ({ activeTab }) => {
       });
     }
   };
+
   return (
     <div className="section__panel-wrapper" ref={ref}>
       {TABS_KEYS.map((key) => (
@@ -45,7 +64,7 @@ export const EventList = ({ activeTab }) => {
           </ul>
         </div>
       ))}
-      {(ref.current ? widths[activeTab] > ref.current.offsetWidth : false) && (
+      {hasHorizontalScroll && (
         <div className="section__arrow" onClick={onArrowCLick}></div>
       )}
     </div>
