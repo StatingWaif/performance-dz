@@ -1,14 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { EventList } from "./EventList";
 import { TABS_KEYS, TABS } from "./TABS";
 import { FavoriteDevicesSelect } from "./FavoriteDevicesSelect";
 
 export const FavoriteDevicesSection = () => {
-  const [activeTab, setActiveTab] = useState("");
-
-  useEffect(() => {
-    setActiveTab(new URLSearchParams(location.search).get("tab") || "all");
-  }, []);
+  const [activeTab, setActiveTab] = useState(
+    () => new URLSearchParams(location.search).get("tab") || "all"
+  );
 
   const onSelectInput = (event) => {
     setActiveTab(event.target.value);
