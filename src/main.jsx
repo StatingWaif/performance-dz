@@ -1,9 +1,9 @@
 import ReactDOM from "react-dom/client";
-import { App } from "./App.jsx";
-import React from "react";
+import { Header } from "./components/Header.jsx";
+import { FavoriteDevicesSection } from "./components/FavoriteDevicesSection.jsx";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+ReactDOM.createRoot(document.getElementById("header")).render(<Header />);
+
+ReactDOM.createRoot(document.getElementById("favoriteRoot")).render(
+  <FavoriteDevicesSection />
 );

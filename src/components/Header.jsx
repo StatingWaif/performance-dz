@@ -13,7 +13,7 @@ export const Header = () => {
   };
 
   return (
-    <header className="header">
+    <>
       <a href="/" className="header__logo" aria-label="Яндекс.Дом"></a>
       <button
         className="header__menu"
@@ -51,6 +51,6 @@ export const Header = () => {
           </a>
         </li>
       </ul>
-    </header>
+    </>
   );
 };
