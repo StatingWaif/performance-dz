@@ -23,6 +23,9 @@ export default defineConfig({
         manualChunks(id) {
           if (id.includes("node_modules")) {
             if (id.includes("react")) {
+              if (id.includes("react-dom")) {
+                return "react-dom";
+              }
               return "react";
             }
             return "modules";
