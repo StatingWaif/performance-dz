@@ -17,4 +17,28 @@ export default defineConfig({
     );
     return config;
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            return "modules";
+          } else if (id.includes("src/components")) {
+            return "components";
+          }
+          return "other";
+        },
+      },
+    },
+    terserOptions: {
+      compress: {
+        module: true,
+        toplevel: true,
+      },
+      output: {
+        comments: false,
+      },
+      sourceMap: false,
+    },
+  },
 });
