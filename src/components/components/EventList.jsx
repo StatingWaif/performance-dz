@@ -2,19 +2,20 @@ import { useEffect, useRef, useState } from "react";
 import { Event } from "./Event";
 import { TABS_KEYS, TABS } from "../const/TABS";
 
+const widths = {
+  all: 102400,
+  kitchen: 478,
+  hall: 400,
+  lights: 813,
+  cameras: 200,
+};
+
 export const EventList = ({ activeTab }) => {
   const ref = useRef();
   const panelRef = useRef();
   const [hasHorizontalScroll, setHasHorizontalScroll] = useState(false);
 
   useEffect(() => {
-    const widths = {
-      all: 102400,
-      kitchen: 478,
-      hall: 400,
-      lights: 813,
-      cameras: 200,
-    };
     if (ref.current) {
       const handleResize = () => {
         setHasHorizontalScroll(widths[activeTab] > ref.current.offsetWidth);
