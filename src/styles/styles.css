@@ -476,6 +476,12 @@ body {
 }
 
 @media (max-width: 768px) {
+  .section__select {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
   .header__links {
     display: none;
 
@@ -565,9 +571,9 @@ body {
     display: block;
   }
 
-  .section__tabs {
+  /* .section__tabs {
     display: none;
-  }
+  } */
 
   .hero-dashboard {
     flex-direction: column;
