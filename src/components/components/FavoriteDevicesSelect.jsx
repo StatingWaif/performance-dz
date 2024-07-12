@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { TABS, TABS_KEYS } from "./TABS";
+import { TABS, TABS_KEYS } from "../const/TABS";
 
 const FavoriteDevicesSelect = ({ onSelectInput }) => {
   return (

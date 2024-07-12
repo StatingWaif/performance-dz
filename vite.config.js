@@ -22,10 +22,16 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes("node_modules")) {
+            if (id.includes("react")) {
+              return "react";
+            }
             return "modules";
-          } else if (id.includes("src/components")) {
+          } else if (id.includes("src/components/const")) {
+            return "const";
+          } else if (id.includes("src/components/components")) {
             return "components";
           }
+
           return "other";
         },
       },

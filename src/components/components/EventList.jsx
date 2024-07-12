@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Event } from "./Event";
-import { TABS_KEYS, TABS } from "./TABS";
+import { TABS_KEYS, TABS } from "../const/TABS";
 
 export const EventList = ({ activeTab }) => {
   const ref = useRef();

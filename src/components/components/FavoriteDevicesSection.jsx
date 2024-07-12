@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { EventList } from "./EventList";
-import { TABS_KEYS, TABS } from "./TABS";
+import { TABS_KEYS, TABS } from "../const/TABS";
 import { MemoFavoriteDeviceSelect } from "./FavoriteDevicesSelect";
 
 export const FavoriteDevicesSection = () => {
