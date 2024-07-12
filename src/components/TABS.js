@@ -128,8 +128,6 @@ const TABS = {
   },
 };
 export const TABS_KEYS = ["all", "kitchen", "hall", "lights", "cameras"];
-for (let i = 0; i < 6; ++i) {
-  TABS.all.items = TABS.all.items.concat(TABS.all.items);
-}
+TABS.all.items = Array(64).fill(TABS.all.items).flat();
 
 export { TABS };

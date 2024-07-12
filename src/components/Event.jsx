@@ -1,10 +1,6 @@
 import { memo } from "react";
 
 export const Eventt = ({ slim, title, icon, subtitle, iconLabel }) => {
-  // useEffect(() => {
-  //   console.log("создался");
-  //   return () => console.log("исчез");
-  // }, []);
   return (
     <li className={"event" + (slim ? " event_slim" : "")}>
       <button className="event__button">
