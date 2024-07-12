@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Logo } from "./Logo";
 
 export const Header = () => {
   let [expanded, setExpanded] = useState(false);
@@ -14,7 +15,7 @@ export const Header = () => {
 
   return (
     <>
-      <a href="/" className="header__logo" aria-label="Яндекс.Дом"></a>
+      <Logo />
       <button
         className="header__menu"
         aria-expanded={expanded ? "true" : "false"}
