@@ -1,5 +1,4 @@
 import { memo } from "react";
-import { TABS, TABS_KEYS } from "../const/TABS";
 
 const FavoriteDevicesSelect = ({ onSelectInput }) => {
   return (
@@ -11,11 +10,11 @@ const FavoriteDevicesSelect = ({ onSelectInput }) => {
         defaultValue="all"
         onInput={onSelectInput}
       >
-        {TABS_KEYS.map((key) => (
-          <option key={key} value={key}>
-            {TABS[key].title}
-          </option>
-        ))}
+        <option value="all">Все</option>
+        <option value="kitchen">Кухня</option>
+        <option value="hall"></option>
+        <option value="lights">Лампочки</option>
+        <option value="cameras">Камеры</option>
       </select>
     </>
   );

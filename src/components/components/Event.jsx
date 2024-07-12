@@ -1,8 +1,8 @@
 import { memo } from "react";
 
-export const Eventt = ({ slim, title, icon, subtitle, iconLabel }) => {
+export const Eventt = ({ title, icon, subtitle, iconLabel }) => {
   return (
-    <li className={"event" + (slim ? " event_slim" : "")}>
+    <li className="event">
       <button className="event__button">
         <span
           className={`event__icon event__icon_${icon}`}
