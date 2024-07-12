@@ -1,10 +1,10 @@
-import { memo, useEffect } from "react";
+import { memo } from "react";
 
 export const Eventt = ({ slim, title, icon, subtitle, iconLabel }) => {
-  useEffect(() => {
-    console.log("создался");
-    return () => console.log("исчез");
-  });
+  // useEffect(() => {
+  //   console.log("создался");
+  //   return () => console.log("исчез");
+  // }, []);
   return (
     <li className={"event" + (slim ? " event_slim" : "")}>
       <button className="event__button">
@@ -20,4 +20,3 @@ export const Eventt = ({ slim, title, icon, subtitle, iconLabel }) => {
   );
 };
 export const Event = memo(Eventt);
-// export const MemoEvent = Event;
