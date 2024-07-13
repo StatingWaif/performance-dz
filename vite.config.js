@@ -22,12 +22,12 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes("node_modules")) {
-            // if (id.includes("react")) {
-            //   if (id.includes("react-dom")) {
-            //     return "react-dom";
-            //   }
-            //   return "react";
-            // }
+            if (id.includes("react-dom")) {
+              //   if (id.includes("react-dom")) {
+              //     return "react-dom";
+              //   }
+              return "react-dom";
+            }
             return "modules";
           }
           // else if (id.includes("src/components/const")) {
