@@ -28,18 +28,17 @@ export default defineConfig({
               //   }
               return "react-dom";
             }
-            return "modules";
+            return "other";
           }
           // else if (id.includes("src/components/const")) {
           //   return "const";
           // }
           else if (id.includes("src/components/")) {
-            return "components";
+            return "other";
           }
 
           return "other";
         },
-        defer: true,
       },
     },
     terserOptions: {
