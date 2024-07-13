@@ -24,12 +24,7 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes("node_modules")) {
-            // if (id.includes("react-dom")) {
             return "modules";
-            // }
-            // return "other";
-          } else if (id.includes("src/components/")) {
-            return "other";
           }
 
           return "other";
@@ -44,7 +39,6 @@ export default defineConfig({
       output: {
         comments: false,
       },
-      sourceMap: false,
     },
   },
 });
