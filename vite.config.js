@@ -20,26 +20,25 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks(id) {
-          if (id.includes("node_modules")) {
-            // if (id.includes("react")) {
-            //   if (id.includes("react-dom")) {
-            //     return "react-dom";
-            //   }
-            //   return "react";
-            // }
-            return "modules";
-          }
-          // else if (id.includes("src/components/const")) {
-          //   return "const";
-          // }
-          else if (id.includes("src/components")) {
-            return "components";
-          }
-
-          return "other";
-        },
-        defer: true,
+        //   manualChunks(id) {
+        //     if (id.includes("node_modules")) {
+        //       // if (id.includes("react")) {
+        //       //   if (id.includes("react-dom")) {
+        //       //     return "react-dom";
+        //       //   }
+        //       //   return "react";
+        //       // }
+        //       return "modules";
+        //     }
+        //     // else if (id.includes("src/components/const")) {
+        //     //   return "const";
+        //     // }
+        //     else if (id.includes("src/components")) {
+        //       return "components";
+        //     }
+        //     return "other";
+        //   },
+        //   defer: true,
       },
     },
     terserOptions: {
