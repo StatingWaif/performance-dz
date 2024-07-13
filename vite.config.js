@@ -33,12 +33,13 @@ export default defineConfig({
           // else if (id.includes("src/components/const")) {
           //   return "const";
           // }
-          else if (id.includes("src/components/components")) {
+          else if (id.includes("src/components")) {
             return "components";
           }
 
           return "other";
         },
+        defer: true,
       },
     },
     terserOptions: {
