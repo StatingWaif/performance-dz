@@ -1,8 +1,10 @@
-import { FavoriteDevicesSection } from "./FavoriteDevicesSection";
-import ReactDOM from "react-dom/client";
-
 export function renderFavoriteDevicesSection() {
-  ReactDOM.createRoot(document.getElementById("favoriteRoot")).render(
-    <FavoriteDevicesSection />
-  );
+  Promise.all([
+    import("react-dom/client"),
+    import("./FavoriteDevicesSection"),
+  ]).then(([ReactDOM, { FavoriteDevicesSection }]) => {
+    ReactDOM.createRoot(document.getElementById("favoriteRoot")).render(
+      <FavoriteDevicesSection />
+    );
+  });
 }
