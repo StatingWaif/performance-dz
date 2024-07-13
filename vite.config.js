@@ -18,7 +18,9 @@ export default defineConfig({
     return config;
   },
   build: {
+    minify: "terser",
     rollupOptions: {
+      treeshake: true,
       output: {
         manualChunks(id) {
           if (id.includes("node_modules")) {

@@ -2,8 +2,8 @@ export function renderFavoriteDevicesSection() {
   Promise.all([
     import("react-dom/client"),
     import("./FavoriteDevicesSection"),
-  ]).then(([ReactDOM, { FavoriteDevicesSection }]) => {
-    ReactDOM.createRoot(document.getElementById("favoriteRoot")).render(
+  ]).then(([{ createRoot }, { FavoriteDevicesSection }]) => {
+    createRoot(document.getElementById("favoriteRoot")).render(
       <FavoriteDevicesSection />
     );
   });
